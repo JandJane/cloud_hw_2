@@ -14,12 +14,15 @@ app = Flask(__name__)
 
 @app.route('/healthcheck')
 def healthcheck():
-    cursor.execute("SELECT * FROM statuses WHERE status='AVAILABLE'")
-    available_machines = cursor.fetchall()
-    response = {
-        "ip": my_ip,
-        "services": [{"ip": ip, "status": status} for ip, status in available_machines]
-    }
+    try:
+        cursor.execute("SELECT * FROM statuses WHERE status='AVAILABLE'")
+        available_machines = cursor.fetchall()
+        response = {
+            "ip": my_ip,
+            "services": [{"ip": ip, "status": status} for ip, status in available_machines]
+        }
+    except:
+        response = {"error": "Database is unavailable"}
     return response
 
 
@@ -32,4 +35,4 @@ if __name__ == '__main__':
     else:
         cursor.execute(f"INSERT INTO statuses VALUES ('{my_ip}', 'AVAILABLE')")
         conn.commit()
-    app.run(port=80)
+    app.run(port=80, host='0.0.0.0')

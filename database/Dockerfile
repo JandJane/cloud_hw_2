@@ -25,8 +25,6 @@ USER postgres
 #       allows the RUN command to span multiple lines.
 RUN    /etc/init.d/postgresql start &&\
     psql --command "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &&\
-    export PGPASSWORD=docker &&\
-    psql -h localhost -p 5432 -d docker -U docker --command "CREATE TABLE statuses (ip varchar(80), status varchar(80));" &&\
     createdb -O docker docker
 
 # Adjust PostgreSQL configuration so that remote connections to the
