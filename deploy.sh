@@ -8,9 +8,9 @@ ssh ubuntu@$IP_DB -i ~/.ssh/id_rsa 'bash -s' < deploy_db.sh
 
 # Backends
 ssh ubuntu@$IP_BACKEND1 -i ~/.ssh/id_rsa 'echo '$IP_BACKEND1' > my_ip.txt'
-ssh ubuntu@$IP_BACKEND1 -i ~/.ssh/id_rsa 'echo 'IP_DB' > db_host.txt'
+ssh ubuntu@$IP_BACKEND1 -i ~/.ssh/id_rsa 'echo '$IP_DB' > db_host.txt'
 ssh ubuntu@$IP_BACKEND1 -i ~/.ssh/id_rsa 'bash -s' < deploy_backend.sh
 
 ssh ubuntu@$IP_BACKEND2 -i ~/.ssh/id_rsa 'echo '$IP_BACKEND2' > my_ip.txt'
-ssh ubuntu@$IP_BACKEND2 -i ~/.ssh/id_rsa 'echo 'IP_DB' > db_host.txt'
+ssh ubuntu@$IP_BACKEND2 -i ~/.ssh/id_rsa 'echo '$IP_DB' > db_host.txt'
 ssh ubuntu@$IP_BACKEND2 -i ~/.ssh/id_rsa 'bash -s' < deploy_backend.sh

@@ -2,8 +2,8 @@ import sys
 import psycopg2
 from flask import Flask
 
-db_host = open('~/db_host.txt').read()
-my_ip = open('~/my_ip.txt').read()
+db_host = open('db_host.txt').read()
+my_ip = open('my_ip.txt').read()
 
 conn = psycopg2.connect(dbname='docker', user='docker',
                         password='docker', host=db_host, port=5432)
