@@ -6,7 +6,7 @@ db_host = open('db_host.txt').read().strip()
 my_ip = open('my_ip.txt').read().strip()
 
 conn = psycopg2.connect(dbname='docker', user='docker',
-                        password='docker', host=db_host, port=5432)
+                        password='docker', host=db_host, port=54321)
 cursor = conn.cursor()
 
 app = Flask(__name__)
